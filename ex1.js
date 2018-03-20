@@ -8,19 +8,46 @@
 // [6, 3, 2, 7, 5, 0] should return [6, 3, 2, 5, 7, 0]
 
 function oddSort(array) {
+  let newOddArray = [];
+  let newEvenArray = [];
+  // remember positions of all numbers
+  let placeHolderArray = [];
+  let sortedArray = [];
+
   // iterate, if odd pull out in separate array
-  // remember positions of even numbers
+  array.forEach(function(number){
+    if (number % 2 === 1) {
+      newOddArray.push(number);
+      placeHolderArray.push(1);
+    } else {
+      newEvenArray.push(number);
+      placeHolderArray.push(0);
+    }
+  });
 
   // sort odd array
+  newOddArray.sort();
 
   // assemble new array back together
-
+  placeHolderArray.forEach(function(number){
+    if (number === 1) {
+      sortedArray.push(newOddArray[0]);
+      newOddArray = newOddArray.slice(1);
+      console.log(newOddArray);
+    } else {
+      sortedArray.push(newEvenArray[0]);
+      newEvenArray = newEvenArray.slice(1);
+      console.log(newEvenArray);
+    }
+  });
+  
+  return sortedArray;
 }
 
 const quickTest1 = oddSort([5, 3, 2, 8, 1, 4]);
 console.log(quickTest1);
-console.log(quickTest1 === [1, 3, 2, 8, 5, 4]);
+console.log(quickTest1 === [ 1, 3, 2, 8, 5, 4 ]);
 
 const quickTest2 = oddSort([6, 3, 2, 7, 5, 0]);
 console.log(quickTest2);
-console.log(quickTest2 === [6, 3, 2, 5, 7, 0]);
+console.log(quickTest2 === [ 6, 3, 2, 5, 7, 0 ]);
