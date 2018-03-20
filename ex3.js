@@ -7,26 +7,21 @@
 // "Hello world !" should return “elloHay orldWay !”
 
 function pigLatin(string) {
-  // handle punctuation
-
+  const words = string.split(" ");
   let pigLatinArray = [];
   
-  const words = string.split(" ");
-  // slice off first letter and stick it on the end
-  console.log(words);
   words.forEach(function(word) {
+    // handle punctuation
     if (word === "." || word === "!" || word === "?") {
       pigLatinArray.push(word);
     } else {
+      // slice off first letter and stick it on the end
       pigLatinArray.push(`${word.slice(1)}${word[0]}ay`);
     }
-    
   });
   
   // concat everything back together
-  console.log(pigLatinArray);
   return pigLatinArray.join(" ");
-
 }
 
 const quickTest1 = pigLatin("Pig latin is cool");
